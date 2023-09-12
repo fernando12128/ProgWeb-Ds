@@ -1,0 +1,68 @@
+*{
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+}
+
+#logo {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body{
+    background-color: rgb(25, 18, 32);
+}
+
+h1{
+    color:#bd2b2b;
+}
+
+h2{
+    color:#ededed;
+}
+
+.color1{
+    background-color:#ededed;
+}
+
+input[type='file'] {
+    display: none;
+}
+
+label {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border-radius: 5px;
+}
+
+.rodo
+{
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    color: #e40a0a;
+}
+
+.rodo h1
+{
+    font-size: 25vh;
+    text-transform: uppercase;
+
+}
+
+footer
+{
+    width: 100%;
+    min-height: 250px;
+    background: rgb(0, 0, 0);
+    display: flex;
+}
+
+.bg-secondary{
+    background-color: #b91b1b;
+}
