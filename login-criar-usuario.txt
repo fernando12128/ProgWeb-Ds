@@ -1,0 +1,60 @@
+Criar o projeto
+Criar o banco
+
+executar o comando php artisan migrate
+
+model User
+
+Classe RegisterController:
+
+use Illuminate\Http\Request;
+
+//adicionar o método
+ public function store(Request $request)
+    {
+        $user = new User();
+        $user->name = "Maria";
+        $user->email = "maria@gmail.com";
+        $user -> password = Hash::make("123456");        
+        $user->created_at = date('Y-m-d');
+        $user->updated_at = date('Y-m-d');        
+        $user ->save();
+
+        //Auth::login($user);
+
+      // return redirect('/')->with('mensagem', 'Usuário adicionado com sucesso!');;
+    }
+
+
+
+
+Criar a View usuario.blade.php
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="/usuario" method="post">
+        @csrf
+        <!-- Colocar os campos -->
+        <input type="submit" value="Criar" />
+    </form>
+    
+</body>
+</html>
+
+---------------------
+
+web.php
+
+Route::get('/usuario', function () {
+    return view('usuario');
+});
+
+Route::post('/usuario','Auth\RegisterController@store');
+
