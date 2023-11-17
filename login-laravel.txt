@@ -1,0 +1,252 @@
+Criar o banco de dados;
+Configurar o banco de dados no arquivo .env;
+Executar o comando php artisan migrate no cmd (na raíz do projeto);
+
+--------------------------
+
+Em App - Http - Controllers - Auth - arquivo RegisterController.php
+
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\User;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+
+//importar
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\AuthenticationException;
+
+
+class RegisterController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Register Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles the registration of new users as well as their
+    | validation and creation. By default this controller uses a trait to
+    | provide this functionality without requiring any additional code.
+    |
+    */
+
+    use RegistersUsers;
+
+    /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/home';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    //public function __construct()
+    //{
+        //$this->middleware('guest');
+        //$this->middleware('auth');    
+    //}
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\User
+     */
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+    }
+
+    public function index()
+    {
+        if(!Auth::attempt($request->only(['email','password']))){        
+            return redirect('/login');
+        }        
+        else{
+            return redirect('/dashboard');        
+        }
+    }
+
+    public function store(Request $request)
+    {
+        $user = new User();
+        $user->name = "Maria";
+        $user->email = "maria@gmail.com";
+        $user -> password = Hash::make("123456");        
+        $user->created_at = date('Y-m-d');
+        $user->updated_at = date('Y-m-d');        
+        $user ->save();
+
+        //Auth::login($user);
+
+      // return redirect('/')->with('mensagem', 'Usuário adicionado com sucesso!');;
+    }
+
+    public function verifyUser(Request $request){        
+
+        if(!Auth::attempt($request->only(['email','password']))){        
+            return redirect('/login');
+        }        
+        else{
+            return redirect('/dashboard');        
+        }
+    }
+
+    public function logoutUser(Request $request){
+        Auth::logout();
+        return redirect('/login');  
+    }
+
+
+}
+
+-----------------------------------------------------
+
+web.php
+
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+use App\Http\Middleware\Authenticate;
+use Illuminate\Auth\AuthenticationException;
+
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/usuario', function () {
+    return view('usuario');
+});
+
+// Route::get('login', function () {
+//     return view('login');
+// });
+
+Route::get('login',array('as'=>'login',function(){
+    return view('login');
+}));
+
+Route::post('/usuario','Auth\RegisterController@store');
+
+Route::post('login','Auth\RegisterController@verifyUser');
+
+Route::get('/logout','Auth\RegisterController@logoutUser');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('auth');
+
+------------------------------------------------------------
+
+login.blade.php
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+    <form action="/login" method="post">
+        @csrf
+        <div>
+            <input type="text" name="email" value="maria@gmail.com" />            
+        </div>
+
+        <div>
+            <input type="text" name="password" value="123456" />            
+        </div>
+
+        <div>
+            <input type="submit" value="Login" />
+        </div>  
+    </form>
+   
+</body>
+</html>
+
+---------------------------------------------------------------
+
+usuario.blade.php
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<form action="/usuario" method="post">
+    @csrf
+    <input type="submit" value="Salvar" />
+</form>
+    
+</body>
+</html>
+
+----------------------------------------------------------------
+
+dashboard.blade.php
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1> dashboard </h1>
+   
+
+    <a href="/logout"> Sair </a>
+
+</body>
+</html>
