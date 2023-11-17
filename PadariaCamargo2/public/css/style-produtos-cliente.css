@@ -1,0 +1,198 @@
+:root {
+    --font-color-principal: wheat;
+    --font-color-secondary: #c27c5a;  
+    --font-color-p: #303030; 
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url(/img/wallpaper.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;    
+    overflow-x: hidden;
+}
+
+.container{
+    opacity: 1;
+}
+.header {
+    background-color: rgba(255, 255, 255, 0.9);
+    /* border: 2px solid red; */
+    text-align: center;
+    padding: 10px 0;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-bottom: 2%;
+}
+.header__logo img {
+    width: 20%;
+}
+
+.header__navbar {
+    border: 2px solid red;
+}
+.header__navbar__link {
+    color: rgb(184, 138, 64);   
+
+}
+
+.header__link {
+    border: 2px solid red;
+    padding: 10px 20px;
+    background-color: #7f848a;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.175rem;
+    margin-right: 1rem;
+    border-radius: 5px; /* Bordas arredondadas */
+    
+}
+
+
+#botaoSair {
+    background-color: #ff4136; /* Cor diferente para o botão "Sair" */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.content2 {
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    overflow: hidden; 
+    text-align: center;
+    align-items: center;
+}
+.centerCont{
+    justify-content: space-evenly;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 80%;
+
+}
+.centerCont a{
+    text-decoration: none;
+}
+/* TABELA */
+.tb_ECliente{
+    min-height: 150px;
+    width: 500px;
+    background-color: rgba(255, 255, 255);
+    color: var(--font-color-principal);
+    margin: 10px;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: start;
+    font-size: 15px;
+    border-radius: 10px;
+    border: transparent solid 1px;
+    box-shadow: 5px 5px 10px rgba(129, 128, 128, 0.582);
+    
+}
+
+
+.tbECliente__left{
+    width: 35%;
+}
+
+.tbECliente__right{
+    flex: 1;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    justify-content: space-between;
+
+}
+
+.tb_ECliente__title{    
+    font-size: 2.2rem;
+    height: auto;
+    width: 100%;
+    margin: 0 15px;
+    /* padding: .5rem; */
+    /* background-color: var(--font-color-principal); */
+    color: black;
+    /* border-radius: 10px 10px 0 0; */
+}
+
+.tb_ECliente__img{
+    /* border-radius: 50px; */
+    margin-bottom: 1rem;
+    margin-top: .5rem;
+    object-fit: cover;
+    /* width: 200px; */
+    width: 100%;
+
+}
+
+.tb_EClient__desc {
+    font-size: 1rem;
+    margin: 0 15px;
+    color: var(--font-color-p);
+}
+
+.tb_EClient__price {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: end;
+    /* border: 2px solid red; */
+    color: #555;
+}
+
+
+footer {
+    margin-top: 2%;
+    background-color: rgba(245, 222, 179, 0.8);
+    color: var(--font-color-secondary);
+    text-align: center;
+    padding: 10px 0;
+    position:relative;
+    bottom: 0;
+    left: 0;
+    width: 100%; 
+    clear: both;
+}
+
+
+/* TESTE API CEP */
+.form_cep{
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    justify-content: center;
+    text-align: justify;
+    background: rgba(150, 150, 128, 0.582);
+    color: white;
+}
+.form_cep label{
+    margin: 1%;
+}
+.form_cep_camp{    
+    margin: .5%;
+    align-items: right;
+    max-width: 200px;
+}
