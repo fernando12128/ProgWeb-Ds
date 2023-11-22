@@ -31,7 +31,7 @@ class ProdutoController extends Controller
     }    
     public function indexApi()
     {
-        $sql = "select * from tbProduto";
+        $sql = "select * from tbproduto";
         $produtos = DB::select($sql);
 
         return $produtos;

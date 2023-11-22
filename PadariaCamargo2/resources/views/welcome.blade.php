@@ -13,6 +13,13 @@
         </div>
     </header>
     <div class="content">
+        @if($errors ->any())
+            <div class= "col-12">
+                @foreach($errors->all() as $error)
+                    <div class="alert alert-danger">{{$error}}</div>
+                @endforeach
+            </div>
+        @endif
         <div class="container_menu">
             <a href="admProdutos">
                 <button>Gerenciar Produtos</button>

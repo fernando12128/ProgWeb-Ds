@@ -35,13 +35,13 @@
                         <input type="submit" value="Salvar">
                     </td>
                     <td class="celBottonL">
-                        <input type="text" name="txProduto" id="txProduto" placeholder="Ex.: Dogão">
+                        <input type="text" name="txProduto" id="txProduto" placeholder="Ex.: Pão de batata">
                     </td>
                     <td>
-                        <input type="text" name="txValor" id="txValor" placeholder="Ex.: 5.99">
+                        <input type="text" name="txValor" id="txValor" placeholder="Ex.: 9.00">
                     </td>
                     <td>
-                        <input type="text" name="txDescrProduto" placeholder="Ex.: Pão com salsicha">
+                        <input type="text" name="txDescrProduto" placeholder="Ex.: Com batata">
                     </td>
                     <td>
                         <input type="date" name="txDataCadastro" id="txDataCadastro">
