@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body
+{
+    background-image: url(/img/wallpaper.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;    
+    overflow-x: hidden;
+}
+
+
+#cabecalho
+{
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+}
+
+.login
+{
+    width: 100vw;
+    height: 100lvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login__logo, .login__form
+{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.login__form
+{
+    background-color: rgba(184, 138, 64, 0.692);
+    min-height: 100lvh;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.login__form > form 
+{
+    /* border: 2px solid red; */
+    width: 500px;
+    font-size: 1.3rem;
+    /* background-color: rgba(184, 138, 64, 0.692); */
+}
+
+.login__form > form > label
+{
+    margin: 10px 10px 0;
+} 
+
+.login__form__input
+{
+    width: 90%;
+    margin: 0 10px 10px;
+    padding: .325rem;
+    font-size: 1.3rem;
+}
+
+.cadastro
+{
+    background-color: rgba(184, 88, 64, 0.692);
+
+}
+
+.login__form__submit, .login__form_cadastrar
+{
+    margin: 0 10px 10px;
+    padding: .325rem;
+    font-size: 1.3rem;
+}
+
+.login__form_cadastrar
+{
+    position: relative;
+    color: #003686;
+    text-decoration: none;
+}
+
+.login__form_cadastrar:hover
+{
+    text-decoration: underline;
+    top: -3px;
+
+}

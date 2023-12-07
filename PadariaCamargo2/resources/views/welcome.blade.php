@@ -33,6 +33,7 @@
             <a href="consultacep">
                 <button>Teste Cep</button>
             </a>
+            <a href="/logout"> <button>Sair</button> </a>
         </div>
     </div>
 </body>

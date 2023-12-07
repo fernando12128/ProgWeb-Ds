@@ -1,41 +1,61 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthManager;
+
 
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+});
+
+/* LOGIN */
+
+
+Route::get('/usuario', function () {
+    return view('usuario');
+});
+
+// Route::get('login', function () {
+//     return view('login');
+// });
+
+Route::get('login',array('as'=>'login',function(){
+    return view('login');
+}));
+
+Route::post('/usuario','Auth\RegisterController@store');
+
+Route::post('login','Auth\RegisterController@verifyUser');
+
+Route::get('/logout','Auth\RegisterController@logoutUser');
+
+Route::get('/', function () {
+    return view('welcome');
+})->middleware('auth');
+
 
 Route::get('admProdutos', function () {
     return view('admProdutos');
-});
+})->middleware('auth');
+
 Route::get('clienteProdutos', function () {
     return view('clienteProdutos');
-});
+})->middleware('auth');
 
 Route::get('consultacep', function () {
     return view('consultacep');
-});
+})->middleware('auth');
 Route::get('dashboard', function () {
     return view('dashboard');
-});
+})->middleware('auth');
 
 
 
-Route::post('/Produto','ProdutoController@store');
-Route::get('/admProdutos/excluir/{id}','ProdutoController@destroy');
-Route::get('/clienteProdutos/escolhido/{id}','ProdutoController@show');
+Route::post('/Produto','ProdutoController@store')->middleware('auth');
+Route::get('/admProdutos/excluir/{id}','ProdutoController@destroy')->middleware('auth');
+Route::get('/clienteProdutos/escolhido/{id}','ProdutoController@show')->middleware('auth');
 
 
-Route::get('/admProdutos','ProdutoController@index');
-Route::get('/dashboard','VendaController@index');
-Route::get('/clienteProdutos','ProdutoController@index2');
+Route::get('/admProdutos','ProdutoController@index')->middleware('auth');
+Route::get('/dashboard','VendaController@index')->middleware('auth');
+Route::get('/clienteProdutos','ProdutoController@index2')->middleware('auth');
 
-Route::get('/login', [App\Http\Controllers\AuthManager::class, 'login'])->name('login');
-Route::post('/login', [App\Http\Controllers\AuthManager::class, 'loginPost'])->name('login.post');
-Route::get('/registrar', [App\Http\Controllers\AuthManager::class, 'registrar'])->name('registrar');
-Route::post('/registrar', [App\Http\Controllers\AuthManager::class, 'registrarPost'])->name('registrar.post');
-Route::get('/logout', [App\Http\Controllers\AuthManager::class, 'logout'])->name('logout');
 
-// Route::post('authenticate', ['as' => 'users.authenticate','uses' => 'usersController@authenticate']);
